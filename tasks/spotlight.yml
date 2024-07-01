@@ -1,0 +1,9 @@
+- name: spotlight | Disable Spotlight Indexing Service
+  community.general.launchd:
+    name: com.apple.metadata.mds
+    state: stopped
+    enabled: false
+
+- name: spotlight | Turn Spotlight Indexing off
+  become: true
+  ansible.builtin.shell: mdutil -a -i off || true

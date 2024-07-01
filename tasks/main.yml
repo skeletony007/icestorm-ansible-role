@@ -1,0 +1,7 @@
+- name: Include task list
+  ansible.builtin.include_tasks: "{{ item }}"
+  loop:
+    - defaults-osx.yml
+    - spotlight.yml
+    - notification-center.yml
+    - finder-sidebar.yml

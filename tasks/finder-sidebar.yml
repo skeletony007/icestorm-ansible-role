@@ -1,0 +1,7 @@
+- name: finder-sidebar | Modify Finder Sidebar
+  ansible.builtin.shell: |
+    mysides remove all
+
+    mysides add "{{ ansible_env.USER }}" "file://{{ ansible_env.HOME }}"
+    mysides add personal "file://{{ ansible_env.HOME }}/personal"
+    mysides add work "file://{{ ansible_env.HOME }}/work"

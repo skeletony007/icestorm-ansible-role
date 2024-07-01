@@ -1,0 +1,8 @@
+- name: notification-center | Disable Notification Center Service
+  community.general.launchd:
+    name: com.apple.notificationcenterui
+    state: stopped
+    enabled: false
+
+- name: notification-center | Kill Notification Center
+  ansible.builtin.shell: killall NotificationCenter || true
