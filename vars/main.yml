@@ -16,6 +16,7 @@ osx_defaults:
   - { domain: NSGlobalDomain, key: NSUseAnimatedFocusRing, type: bool, value: false }
   - { domain: NSGlobalDomain, key: NSWindowResizeTime, type: float, value: 0.001 }
   - { domain: NSGlobalDomain, key: QLPanelAnimationDuration, type: float, value: 0 }
+  - { domain: NSGlobalDomain, key: _HIHideMenuBar, type: bool, value: true }
   - { domain: NSGlobalDomain, key: com.apple.mouse.scaling, type: integer, value: -1 }
   - { domain: com.apple.TextEdit, key: NSRequiresAquaSystemAppearance, type: bool, value: true }
   - { domain: com.apple.TextEdit, key: PlainTextEncoding, type: int, value: 4 }
