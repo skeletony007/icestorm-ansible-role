@@ -1,0 +1,47 @@
+- name: power-management | Display options
+  become: true
+  ansible.builtin.command: "{{ item }}"
+  changed_when: true
+  loop:
+    - pmset -c acwake 0
+    - pmset -c lessbright 0
+
+- name: power-management | Display sleep mode
+  become: true
+  ansible.builtin.command: "{{ item }}"
+  changed_when: true
+  loop:
+    - pmset -a displaysleep 10
+    - pmset -b displaysleep 2
+    - pmset -c sleep 1 # (sleep prevented by powerd)
+
+- name: power-management | Disable hibernate mode
+  become: true
+  ansible.builtin.command: "{{ item }}"
+  changed_when: true
+  loop:
+    - pmset -a standby 0
+    - pmset -a hibernatefile /var/vm/sleepimage
+    - pmset -a hibernatemode 0
+    # - rm /var/vm/sleepimage
+    # - touch /var/vm/sleepimage
+    # - chflags uchg /var/vm/sleepimage
+
+- name: power-management | Disable Power Nap
+  become: true
+  ansible.builtin.command: pmset -a powernap 0
+  changed_when: true
+
+- name: power-management | Prevent sleep with active tty
+  become: true
+  ansible.builtin.command: pmset -a ttyskeepawake 1
+  changed_when: true
+
+- name: power-management | Disabel Wake-on-LAN
+  become: true
+  ansible.builtin.command: "{{ item }}"
+  changed_when: true
+  loop:
+    - pmset -a womp 0
+    - pmset -a ring 0
+    - pmset -a proximitywake 0

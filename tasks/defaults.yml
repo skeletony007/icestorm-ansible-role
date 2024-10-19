@@ -1,8 +1,8 @@
-- name: defaults-osx | Write
+- name: defaults | Write
   community.general.osx_defaults:
     domain: "{{ item.domain }}"
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
     state: present
-  loop: "{{ osx_defaults }}"
+  loop: "{{ defaults }}"

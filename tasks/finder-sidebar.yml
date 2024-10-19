@@ -1,7 +1,23 @@
-- name: finder-sidebar | Modify Finder Sidebar
+- name: finder-sidebar | Reset Finder Sidebar items (if needed)
   ansible.builtin.shell: |
-    mysides remove all
+    set -o pipefail
+    if ! mysides list | grep "{{ item.name }} .* {{ item.item }}"; then
+        mysides remove all
+    fi
+  changed_when: false
+  loop:
+    - { name: "{{ ansible_env.USER }}", item: "file://{{ ansible_env.HOME }}" }
+    - { name: "personal", item: "file://{{ ansible_env.HOME }}/personal" }
+    - { name: "work", item: "file://{{ ansible_env.HOME }}/work" }
 
-    mysides add '{{ ansible_env.USER }}' 'file://{{ ansible_env.HOME }}'
-    mysides add personal 'file://{{ ansible_env.HOME }}/personal'
-    mysides add work 'file://{{ ansible_env.HOME }}/work'
+- name: finder-sidebar | Add Finder Sidebar items
+  ansible.builtin.shell: |
+    set -o pipefail
+    if ! mysides list | grep "{{ item.name }} .* {{ item.item }}"; then
+        mysides add "{{ item.name }}" "{{ item.item }}"
+    fi
+  changed_when: true
+  loop:
+    - { name: "{{ ansible_env.USER }}", item: "file://{{ ansible_env.HOME }}" }
+    - { name: "personal", item: "file://{{ ansible_env.HOME }}/personal" }
+    - { name: "work", item: "file://{{ ansible_env.HOME }}/work" }
