@@ -28,7 +28,7 @@ defaults:
   - { domain: NSGlobalDomain, key: _HIHideMenuBar, type: bool, value: true }
   - { domain: NSGlobalDomain, key: com.apple.keyboard.fnState, type: bool, value: true }
   - { domain: NSGlobalDomain, key: com.apple.mouse.linear, type: bool, value: true }
-  - { domain: NSGlobalDomain, key: com.apple.mouse.scaling, type: string, value: 1 }
+  - { domain: NSGlobalDomain, key: com.apple.mouse.scaling, type: string, value: -1 }
   - { domain: NSGlobalDomain, key: com.apple.springing.delay, type: float, value: 0 }
   - { domain: NSGlobalDomain, key: com.apple.springing.enabled, type: bool, value: false }
   - { domain: com.apple.AppleMultitouchTrackpad, key: FirstClickThreshold, type: int, value: 1 }
